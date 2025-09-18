@@ -15,7 +15,7 @@ import java.util.List;
 public class MainViewModel extends AndroidViewModel {
 
     PizzaRepository pizzaRepo;
-    private LiveData<List<Pizza>> pizzasInOrder;          // list of pizzas ordered so far
+    LiveData<List<Pizza>> pizzasInOrder;          // list of pizzas ordered so far
 
     public MainViewModel(@NonNull Application application) {
         super(application);
@@ -43,7 +43,6 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Pizza>> getAllOrder() {
-        pizzasInOrder = pizzaRepo.getAllOrder();
         return pizzasInOrder;
     }
 

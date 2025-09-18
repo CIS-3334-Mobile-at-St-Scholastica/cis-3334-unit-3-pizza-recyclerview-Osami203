@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     Integer pizzaSize = 1;     // Pizza sizes are 0=Small, 1=Medium, 2=Large, 3=X-large
     final String[] PIZZA_SIZES = {"Small","Medium","Large","X-Large"};
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         // implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
+        seekBarSize = findViewById(R.id.seekBarSize);
+        buttonAddToOrder = findViewById(R.id.buttonAddToOrder);
+        buttonPlaceOrder = findViewById(R.id.buttonPlaceOrder);
         textViewSize = findViewById(R.id.textViewSize);
         textOrder = findViewById(R.id.textOrder);
         chipPepperoni = findViewById(R.id.chipPepperoni);
@@ -56,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
      *   Handle SeekBar changes
      */
     private void setupSeekBar() {
-        seekBarSize = findViewById(R.id.seekBarSize);
         seekBarSize.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -95,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mainViewModel.addToOrder(getToppings(), pizzaSize);
-                //textOrder.setText(mainViewModel.getOrder() );
+                textOrder.setText(mainViewModel.getOrder() );
             }
         });
     }
@@ -106,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable final String newStatus) {
                 // Update the UI, in this case, a TextView.
-                //textOrder.setText(textOrder.getText().toString() + "\n" + newStatus );
+               // textOrder.setText(textOrder.getText().toString() + "\n" + newStatus );
                 textOrder.setText(newStatus );
             }
         };
